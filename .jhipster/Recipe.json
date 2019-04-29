@@ -1,0 +1,68 @@
+{
+    "name": "Recipe",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serves",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "preptime",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "image",
+            "otherEntityRelationshipName": "recipe",
+            "relationshipName": "image"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "step",
+            "otherEntityRelationshipName": "recipe",
+            "relationshipName": "step"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "author",
+            "otherEntityRelationshipName": "recipe",
+            "relationshipName": "author",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "ingredient",
+            "otherEntityRelationshipName": "recipe",
+            "javadoc": "A relationship",
+            "relationshipName": "ingredient",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "category",
+            "otherEntityRelationshipName": "recipe",
+            "relationshipName": "category",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190429145521",
+    "javadoc": "not an ignored comment",
+    "entityTableName": "recipe",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
