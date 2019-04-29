@@ -21,12 +21,6 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "otherEntityName": "image",
-            "otherEntityRelationshipName": "recipe",
-            "relationshipName": "image"
-        },
-        {
-            "relationshipType": "one-to-many",
             "otherEntityName": "step",
             "otherEntityRelationshipName": "recipe",
             "relationshipName": "step"
@@ -39,18 +33,18 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "ingredient",
-            "otherEntityRelationshipName": "recipe",
-            "javadoc": "A relationship",
-            "relationshipName": "ingredient",
-            "otherEntityField": "id"
-        },
-        {
             "relationshipType": "many-to-many",
             "otherEntityName": "category",
             "otherEntityRelationshipName": "recipe",
             "relationshipName": "category",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "ingredient",
+            "otherEntityRelationshipName": "recipe",
+            "relationshipName": "ingredient",
             "otherEntityField": "id",
             "ownerSide": true
         }

@@ -59,8 +59,8 @@ public class Author implements Serializable {
     private Instant birthday;
 
     @DBRef
-    @Field("user")
-    private Location user;
+    @Field("location")
+    private Location location;
 
     @DBRef
     @Field("roles")
@@ -192,17 +192,17 @@ public class Author implements Serializable {
         this.birthday = birthday;
     }
 
-    public Location getUser() {
-        return user;
+    public Location getLocation() {
+        return location;
     }
 
-    public Author user(Location location) {
-        this.user = location;
+    public Author location(Location location) {
+        this.location = location;
         return this;
     }
 
-    public void setUser(Location location) {
-        this.user = location;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Set<Role> getRoles() {

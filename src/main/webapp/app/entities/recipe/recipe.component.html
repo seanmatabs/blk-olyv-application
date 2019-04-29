@@ -35,7 +35,6 @@
             <th jhiSortBy="serves"><span>Serves</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="preptime"><span>Preptime</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="author.id"><span>Author</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="ingredient.id"><span>Ingredient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -49,11 +48,6 @@
                 <td>
                     <div *ngIf="recipe.author">
                         <a [routerLink]="['../author', recipe.author?.id, 'view' ]" >{{recipe.author?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="recipe.ingredient">
-                        <a [routerLink]="['../ingredient', recipe.ingredient?.id, 'view' ]" >{{recipe.ingredient?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

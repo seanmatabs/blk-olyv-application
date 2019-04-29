@@ -8,10 +8,10 @@ import { IRecipe } from 'app/shared/model/recipe.model';
 import { RecipeService } from './recipe.service';
 import { IAuthor } from 'app/shared/model/author.model';
 import { AuthorService } from 'app/entities/author';
-import { IIngredient } from 'app/shared/model/ingredient.model';
-import { IngredientService } from 'app/entities/ingredient';
 import { ICategory } from 'app/shared/model/category.model';
 import { CategoryService } from 'app/entities/category';
+import { IIngredient } from 'app/shared/model/ingredient.model';
+import { IngredientService } from 'app/entities/ingredient';
 
 @Component({
     selector: 'jhi-recipe-update',
@@ -23,16 +23,16 @@ export class RecipeUpdateComponent implements OnInit {
 
     authors: IAuthor[];
 
-    ingredients: IIngredient[];
-
     categories: ICategory[];
+
+    ingredients: IIngredient[];
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected recipeService: RecipeService,
         protected authorService: AuthorService,
-        protected ingredientService: IngredientService,
         protected categoryService: CategoryService,
+        protected ingredientService: IngredientService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -48,13 +48,6 @@ export class RecipeUpdateComponent implements OnInit {
                 map((response: HttpResponse<IAuthor[]>) => response.body)
             )
             .subscribe((res: IAuthor[]) => (this.authors = res), (res: HttpErrorResponse) => this.onError(res.message));
-        this.ingredientService
-            .query()
-            .pipe(
-                filter((mayBeOk: HttpResponse<IIngredient[]>) => mayBeOk.ok),
-                map((response: HttpResponse<IIngredient[]>) => response.body)
-            )
-            .subscribe((res: IIngredient[]) => (this.ingredients = res), (res: HttpErrorResponse) => this.onError(res.message));
         this.categoryService
             .query()
             .pipe(
@@ -62,6 +55,13 @@ export class RecipeUpdateComponent implements OnInit {
                 map((response: HttpResponse<ICategory[]>) => response.body)
             )
             .subscribe((res: ICategory[]) => (this.categories = res), (res: HttpErrorResponse) => this.onError(res.message));
+        this.ingredientService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IIngredient[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IIngredient[]>) => response.body)
+            )
+            .subscribe((res: IIngredient[]) => (this.ingredients = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {
@@ -98,11 +98,11 @@ export class RecipeUpdateComponent implements OnInit {
         return item.id;
     }
 
-    trackIngredientById(index: number, item: IIngredient) {
+    trackCategoryById(index: number, item: ICategory) {
         return item.id;
     }
 
-    trackCategoryById(index: number, item: ICategory) {
+    trackIngredientById(index: number, item: IIngredient) {
         return item.id;
     }
 

@@ -27,16 +27,16 @@
                         <a [routerLink]="['/author', recipe.author?.id, 'view']">{{recipe.author?.id}}</a>
                     </div>
                 </dd>
-                <dt><span>Ingredient</span></dt>
-                <dd>
-                    <div *ngIf="recipe.ingredient">
-                        <a [routerLink]="['/ingredient', recipe.ingredient?.id, 'view']">{{recipe.ingredient?.id}}</a>
-                    </div>
-                </dd>
                 <dt><span>Category</span></dt>
                 <dd>
                     <span *ngFor="let category of recipe.categories; let last = last">
                         <a [routerLink]="['/category', category?.id, 'view' ]">{{category.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Ingredient</span></dt>
+                <dd>
+                    <span *ngFor="let ingredient of recipe.ingredients; let last = last">
+                        <a [routerLink]="['/ingredient', ingredient?.id, 'view' ]">{{ingredient.id}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

@@ -1,12 +1,15 @@
 package za.co.blkolyv.application.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -26,6 +29,11 @@ public class Ingredient implements Serializable {
 
     @Field("unit")
     private String unit;
+
+    @DBRef
+    @Field("recipes")
+    @JsonIgnore
+    private Set<Recipe> recipes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
@@ -60,6 +68,31 @@ public class Ingredient implements Serializable {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public Ingredient recipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+        return this;
+    }
+
+    public Ingredient addRecipe(Recipe recipe) {
+        this.recipes.add(recipe);
+        recipe.getIngredients().add(this);
+        return this;
+    }
+
+    public Ingredient removeRecipe(Recipe recipe) {
+        this.recipes.remove(recipe);
+        recipe.getIngredients().remove(this);
+        return this;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

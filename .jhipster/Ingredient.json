@@ -10,7 +10,16 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "recipe",
+            "otherEntityRelationshipName": "ingredient",
+            "relationshipName": "recipe",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
     "changelogDate": "20190429145518",
     "entityTableName": "ingredient",
     "dto": "no",

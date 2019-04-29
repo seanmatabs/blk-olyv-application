@@ -44,7 +44,7 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "location",
             "otherEntityRelationshipName": "author",
-            "relationshipName": "user",
+            "relationshipName": "location",
             "otherEntityField": "id",
             "ownerSide": true
         },
