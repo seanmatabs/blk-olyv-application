@@ -1,0 +1,32 @@
+{
+    "name": "Step",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "recipe",
+            "otherEntityRelationshipName": "step",
+            "relationshipName": "recipe",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190429145523",
+    "javadoc": "Task entity.\n@author The JHipster team.",
+    "entityTableName": "step",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

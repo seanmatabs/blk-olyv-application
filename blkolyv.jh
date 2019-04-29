@@ -43,7 +43,7 @@ entity Role {
 /**
  * The User entity.
  */
-entity User {
+entity Author {
 	/**
 	* The firstname attribute.
 	*/
@@ -63,12 +63,12 @@ enum Language {
 }
 
 relationship OneToOne {
-	User{user} to Location
+	Author{user} to Location
 }
 
 relationship ManyToMany {
-	Recipe{step} to Category
-    User{user} to Role
+	Recipe to Category
+    Author to Role
 }
 
 // defining multiple OneToMany relationships with comments
@@ -78,7 +78,7 @@ relationship OneToMany {
 }
 
 relationship ManyToOne {
-	Recipe{author} to User,
+	Recipe{author} to Author,
 
 	/**
 	* A relationship
@@ -94,14 +94,14 @@ relationship ManyToOne {
 //relationship OneToOne {}
 
 // Set pagination options
-paginate Recipe, User, Ingredient with infinite-scroll
+paginate Recipe, Author, Ingredient with infinite-scroll
 paginate Recipe with pagination
 
 // Use Data Transfert Objects (DTO)
 // dto * with mapstruct
 
 // Set service options to all except few
-service all with serviceImpl except User, Recipe
+service all with serviceImpl except Author, Recipe
 
 // Set an angular suffix
 // angularSuffix * with mySuffix
