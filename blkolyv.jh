@@ -1,0 +1,107 @@
+entity Ingredient {
+	name String,
+    unit String
+}
+entity Image {
+	name String,
+    url String
+}
+entity Location {
+	location String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Recipe {
+	name String,
+	description String,
+	serves Integer,
+	preptime String
+}
+
+entity Category {
+	name String required
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity Step {
+	title String,
+	description String
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity Role {
+	title String,
+	description String
+}
+/**
+ * The User entity.
+ */
+entity User {
+	/**
+	* The firstname attribute.
+	*/
+    imageUrl String,
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String,
+	created Instant,
+	lastActive Instant,
+	password String,
+	birthday Instant,
+}
+
+enum Language {
+    AFRIKAANS, ENGLISH, ZULU
+}
+
+relationship OneToOne {
+	User{user} to Location
+}
+
+relationship ManyToMany {
+	Recipe{step} to Category
+    User{user} to Role
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+    Recipe to Image,
+	Recipe to Step,
+}
+
+relationship ManyToOne {
+	Recipe{author} to User,
+
+	/**
+	* A relationship
+	*/
+	Recipe{ingredient} to
+	/**
+	* Another side of the same relationship
+	*/
+	Ingredient
+}
+
+// defining multiple oneToOne relationships
+//relationship OneToOne {}
+
+// Set pagination options
+paginate Recipe, User, Ingredient with infinite-scroll
+paginate Recipe with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except User, Recipe
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
