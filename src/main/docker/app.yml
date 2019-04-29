@@ -1,0 +1,21 @@
+version: '2'
+services:
+    blkolyvapp-app:
+        image: blkolyvapp
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATA_MONGODB_URI=mongodb://blkolyvapp-mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=blkOlyvApp
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_JEST_URI=http://blkolyvapp-elasticsearch:9200
+        ports:
+            - 8080:8080
+    blkolyvapp-mongodb:
+        extends:
+            file: mongodb.yml
+            service: blkolyvapp-mongodb
+    blkolyvapp-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: blkolyvapp-elasticsearch
