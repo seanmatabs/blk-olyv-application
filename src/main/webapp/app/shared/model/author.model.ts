@@ -13,7 +13,7 @@ export interface IAuthor {
     lastActive?: Moment;
     password?: string;
     birthday?: Moment;
-    user?: ILocation;
+    location?: ILocation;
     roles?: IRole[];
 }
 
@@ -29,7 +29,7 @@ export class Author implements IAuthor {
         public lastActive?: Moment,
         public password?: string,
         public birthday?: Moment,
-        public user?: ILocation,
+        public location?: ILocation,
         public roles?: IRole[]
     ) {}
 }

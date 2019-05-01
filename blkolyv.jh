@@ -63,35 +63,24 @@ enum Language {
 }
 
 relationship OneToOne {
-	Author{user} to Location
+	Author{location} to Location
 }
 
 relationship ManyToMany {
 	Recipe to Category
+	Recipe to Ingredient
     Author to Role
 }
 
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {
-    Recipe to Image,
 	Recipe to Step,
 }
 
 relationship ManyToOne {
 	Recipe{author} to Author,
-
-	/**
-	* A relationship
-	*/
-	Recipe{ingredient} to
-	/**
-	* Another side of the same relationship
-	*/
-	Ingredient
+	Image{recipe} to Recipe
 }
-
-// defining multiple oneToOne relationships
-//relationship OneToOne {}
 
 // Set pagination options
 paginate Recipe, Author, Ingredient with infinite-scroll

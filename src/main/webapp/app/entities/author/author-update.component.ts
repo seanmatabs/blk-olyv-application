@@ -21,7 +21,7 @@ export class AuthorUpdateComponent implements OnInit {
     author: IAuthor;
     isSaving: boolean;
 
-    users: ILocation[];
+    locations: ILocation[];
 
     roles: IRole[];
     created: string;
@@ -52,17 +52,17 @@ export class AuthorUpdateComponent implements OnInit {
             )
             .subscribe(
                 (res: ILocation[]) => {
-                    if (!this.author.user || !this.author.user.id) {
-                        this.users = res;
+                    if (!this.author.location || !this.author.location.id) {
+                        this.locations = res;
                     } else {
                         this.locationService
-                            .find(this.author.user.id)
+                            .find(this.author.location.id)
                             .pipe(
                                 filter((subResMayBeOk: HttpResponse<ILocation>) => subResMayBeOk.ok),
                                 map((subResponse: HttpResponse<ILocation>) => subResponse.body)
                             )
                             .subscribe(
-                                (subRes: ILocation) => (this.users = [subRes].concat(res)),
+                                (subRes: ILocation) => (this.locations = [subRes].concat(res)),
                                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
                             );
                     }

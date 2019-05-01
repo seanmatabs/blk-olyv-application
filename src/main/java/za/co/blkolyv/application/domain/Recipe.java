@@ -4,7 +4,6 @@ package za.co.blkolyv.application.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -41,9 +40,6 @@ public class Recipe implements Serializable {
     private String preptime;
 
     @DBRef
-    @Field("image")
-    private Set<Image> images = new HashSet<>();
-    @DBRef
     @Field("step")
     private Set<Step> steps = new HashSet<>();
     @DBRef
@@ -51,18 +47,13 @@ public class Recipe implements Serializable {
     @JsonIgnoreProperties("recipes")
     private Author author;
 
-    /**
-     * A relationship
-     */
-    @ApiModelProperty(value = "A relationship")
-    @DBRef
-    @Field("ingredient")
-    @JsonIgnoreProperties("recipes")
-    private Ingredient ingredient;
-
     @DBRef
     @Field("categories")
     private Set<Category> categories = new HashSet<>();
+
+    @DBRef
+    @Field("ingredients")
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
@@ -125,31 +116,6 @@ public class Recipe implements Serializable {
         this.preptime = preptime;
     }
 
-    public Set<Image> getImages() {
-        return images;
-    }
-
-    public Recipe images(Set<Image> images) {
-        this.images = images;
-        return this;
-    }
-
-    public Recipe addImage(Image image) {
-        this.images.add(image);
-        image.setRecipe(this);
-        return this;
-    }
-
-    public Recipe removeImage(Image image) {
-        this.images.remove(image);
-        image.setRecipe(null);
-        return this;
-    }
-
-    public void setImages(Set<Image> images) {
-        this.images = images;
-    }
-
     public Set<Step> getSteps() {
         return steps;
     }
@@ -188,19 +154,6 @@ public class Recipe implements Serializable {
         this.author = author;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    public Recipe ingredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
-        return this;
-    }
-
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
-    }
-
     public Set<Category> getCategories() {
         return categories;
     }
@@ -224,6 +177,31 @@ public class Recipe implements Serializable {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public Recipe ingredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+        return this;
+    }
+
+    public Recipe addIngredient(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
+        ingredient.getRecipes().add(this);
+        return this;
+    }
+
+    public Recipe removeIngredient(Ingredient ingredient) {
+        this.ingredients.remove(ingredient);
+        ingredient.getRecipes().remove(this);
+        return this;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

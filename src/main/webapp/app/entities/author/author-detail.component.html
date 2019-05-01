@@ -41,10 +41,10 @@
                 <dd>
                     <span>{{author.birthday}}</span>
                 </dd>
-                <dt><span>User</span></dt>
+                <dt><span>Location</span></dt>
                 <dd>
-                    <div *ngIf="author.user">
-                        <a [routerLink]="['/location', author.user?.id, 'view']">{{author.user?.id}}</a>
+                    <div *ngIf="author.location">
+                        <a [routerLink]="['/location', author.location?.id, 'view']">{{author.location?.id}}</a>
                     </div>
                 </dd>
                 <dt><span>Role</span></dt>

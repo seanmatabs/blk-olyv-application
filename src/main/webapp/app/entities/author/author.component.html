@@ -39,7 +39,7 @@
             <th jhiSortBy="lastActive"><span>Last Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="password"><span>Password</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="birthday"><span>Birthday</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.id"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -56,8 +56,8 @@
                 <td>{{author.password}}</td>
                 <td>{{author.birthday | date:'medium'}}</td>
                 <td>
-                    <div *ngIf="author.user">
-                        <a [routerLink]="['../location', author.user?.id, 'view' ]" >{{author.user?.id}}</a>
+                    <div *ngIf="author.location">
+                        <a [routerLink]="['../location', author.location?.id, 'view' ]" >{{author.location?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
